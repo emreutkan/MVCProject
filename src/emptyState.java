@@ -25,7 +25,7 @@ public class emptyState implements State {
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             int response = JOptionPane.showConfirmDialog(frame, "Did you click by accident?", "Confirm", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if (response == JOptionPane.YES_OPTION) {
-                System.out.println("accidental fillbutton click was made");
+                System.out.println("accidental fill button click was made");
             } else if (response == JOptionPane.NO_OPTION) {
                 controller.database.setStock(stock + controller.database.getStock());
             }
@@ -33,7 +33,7 @@ public class emptyState implements State {
             controller.database.setStock(stock + controller.database.getStock());
         }
 
-        this.controller.gui.ErrorField.setText("Machines Stock updated with " + stock + " amount of coffe capsules");
+        this.controller.gui.ErrorField.setText("Machines Stock updated with " + stock + " amount of coffee capsules");
         this.controller.gui.FilledField.setText(String.valueOf(controller.database.getStock()));
     }
 

@@ -8,7 +8,6 @@ public class brewingState implements State {
     int timeRemaining;
 
     public brewingState(Controller controller) {
-        System.out.println("hello test4");
         this.controller = controller;
     }
 
