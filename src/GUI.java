@@ -21,7 +21,7 @@ public class GUI extends javax.swing.JFrame implements Observer {
 
     public GUI() {
         this.setVisible(true);
-
+        this.setTitle("Coffee Maker");
         mainFrame = new javax.swing.JPanel();
         firstRow = new javax.swing.JPanel();
         FilledButton = new javax.swing.JButton();
@@ -128,9 +128,9 @@ public class GUI extends javax.swing.JFrame implements Observer {
             IDLEfield.setBackground(Color.white);
             BREWINGfield.setBackground(Color.white);
             DONEfield.setBackground(Color.green);
-
         } else if (state instanceof emptyState) {
             DONEfield.setBackground(Color.white);
+            IDLEfield.setBackground(Color.white);
             FilledField.setText(String.valueOf(database.getStock()));
             totalNumberOfCups.setText(String.valueOf(database.getSold()));
         }

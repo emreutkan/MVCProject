@@ -11,7 +11,6 @@ public class brewingState implements State {
         this.controller = controller;
     }
 
-
     public void brew() {
         timeRemaining = 5;
 

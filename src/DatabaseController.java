@@ -21,17 +21,16 @@ class DatabaseController {
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              Statement statement = connection.createStatement()) {
 
-            // Create table if it does not exist
+            // Create a table if it does not exist
             String query = "CREATE TABLE IF NOT EXISTS stock_table (" +
                     "stock INT NOT NULL, " +
                     "sold INT NOT NULL);";
             statement.executeUpdate(query);
 
-            // Check if 'id' column exists
+            // Check if there is an id column
             DatabaseMetaData dbMetaData = connection.getMetaData();
             ResultSet rs = dbMetaData.getColumns(null, null, "stock_table", "id");
             if (!rs.next()) {
-                // Add 'id' column if it does not exist
                 String alterTableQuery = "ALTER TABLE stock_table ADD COLUMN id INT AUTO_INCREMENT PRIMARY KEY";
                 statement.executeUpdate(alterTableQuery);
                 System.out.println("Primary key added.");
@@ -43,7 +42,6 @@ class DatabaseController {
             query = "SELECT COUNT(*) FROM stock_table";
             try (PreparedStatement stmt = connection.prepareStatement(query); ResultSet rsCount = stmt.executeQuery()) {
                 if (rsCount.next() && rsCount.getInt(1) == 0) {
-                    // Insert initial stock entry if no rows exist
                     String insertQuery = "INSERT INTO stock_table (stock, sold) VALUES (?, ?)";
                     try (PreparedStatement insertStmt = connection.prepareStatement(insertQuery)) {
                         insertStmt.setInt(1, 0); // Set stock to 0
@@ -64,7 +62,6 @@ class DatabaseController {
             e.printStackTrace();
         }
     }
-
 
 
     public void setStock(int stock) {
