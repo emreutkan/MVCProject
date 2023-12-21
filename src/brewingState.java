@@ -45,5 +45,11 @@ public class brewingState implements State {
         this.controller.gui.ErrorField.setText("Machine is Breawing Please Wait");
     }
 
+    @Override
+    public void ResetButton() {
+        this.controller.gui.ErrorField.setText("Machine is Breawing Please Wait");
+
+    }
+
 
 }

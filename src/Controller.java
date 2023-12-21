@@ -29,6 +29,10 @@ public class Controller implements Subject {
     public void initializeActionListeners() {
         gui.FilledButton.addActionListener(e -> filledButtonPressed());
         gui.StartButton.addActionListener(e -> StartButtonPressed());
+        gui.ResetButton.addActionListener(e -> ResetButtonPressed());
+    }
+    public void StartButtonPressed() {
+        this.state.startButtonPressed();
     }
 
     public void filledButtonPressed() {
@@ -48,8 +52,8 @@ public class Controller implements Subject {
 
     }
 
-    public void StartButtonPressed() {
-        this.state.startButtonPressed();
+    public void ResetButtonPressed(){
+        this.state.ResetButton();
     }
 
     void setState(State state) {

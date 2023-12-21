@@ -37,5 +37,12 @@ public class emptyState implements State {
         this.controller.gui.FilledField.setText(String.valueOf(controller.database.getStock()));
     }
 
+    @Override
+    public void ResetButton() {
+        this.controller.database.setSold(0);
+        this.controller.database.setStock(0);
+        this.controller.setState(controller.returnEmptyState());
+    }
+
 
 }
