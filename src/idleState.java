@@ -2,14 +2,6 @@ import javax.swing.*;
 
 public class idleState implements State {
 
-    Model model;
-    Controller controller;
-
-    public idleState(Controller controller) {
-        this.controller = controller;
-        this.model = controller.model;
-    }
-
     @Override
     public void startButtonPressed() {
         model.setStock(model.getStock() - 1);

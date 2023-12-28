@@ -3,13 +3,7 @@ import java.util.TimerTask;
 
 public class brewingState implements State {
 
-    Controller controller;
-
     int timeRemaining;
-
-    public brewingState(Controller controller) {
-        this.controller = controller;
-    }
 
     public void brew() {
         timeRemaining = 5;

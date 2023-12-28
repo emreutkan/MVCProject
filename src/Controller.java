@@ -2,7 +2,7 @@
 public class Controller implements Subject {
 
     Model model = Model.getInstance();
-    GUI gui;
+    GUI gui = GUI.getInstance();
     State state;
     State doneState;
     State emptyState;
@@ -10,16 +10,23 @@ public class Controller implements Subject {
     State brewingState;
 
 
-    public Controller(GUI gui) {
+    private static Controller ControllerSingleton = null;
+
+    public static synchronized Controller getInstance() {
+        if (ControllerSingleton == null){
+            ControllerSingleton = new Controller();
+        }
+        return ControllerSingleton;
+    }
+
+    private Controller() {
         model.InitializeTable();
+        addObserver(gui);
 
-        this.gui = gui;
-        addObserver(this.gui);
-
-        doneState = new doneState(this);
-        emptyState = new emptyState(this);
-        idleState = new idleState(this);
-        brewingState = new brewingState(this);
+        doneState = new doneState();
+        emptyState = new emptyState();
+        idleState = new idleState();
+        brewingState = new brewingState();
         this.state = emptyState;
         notifyObservers();
 

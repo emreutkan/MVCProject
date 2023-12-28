@@ -19,7 +19,17 @@ public class GUI extends javax.swing.JFrame implements Observer {
     public javax.swing.JPanel middleRow;
     public javax.swing.JTextField totalNumberOfCups;
 
-    public GUI() {
+    private static GUI GUISingleton = null;
+
+    public static synchronized GUI getInstance() {
+        if (GUISingleton == null){
+            GUISingleton = new GUI();
+        }
+        return GUISingleton;
+    }
+
+
+    private GUI() {
         this.setVisible(true);
         this.setTitle("Coffee Maker");
         mainFrame = new javax.swing.JPanel();

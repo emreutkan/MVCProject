@@ -2,14 +2,6 @@ import javax.swing.*;
 
 public class emptyState implements State {
 
-    Model model;
-    Controller controller;
-
-    public emptyState(Controller controller) {
-        this.controller = controller;
-        this.model = controller.model;
-    }
-
     @Override
     public void startButtonPressed() {
         if (model.getStock() == 0) {

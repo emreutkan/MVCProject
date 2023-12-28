@@ -2,14 +2,6 @@ import javax.swing.*;
 
 public class doneState  implements State{
 
-    Model model;
-    Controller controller;
-
-    public doneState(Controller controller) {
-        this.controller = controller;
-        this.model = controller.model;
-    }
-
     @Override
     public void startButtonPressed() {
         if (controller.model.getStock() == 0){
@@ -41,15 +33,15 @@ public class doneState  implements State{
             model.setStock(stock+model.getStock());
         }
         // Example of controller updating the view
-        this.controller.gui.ErrorField.setText("Machines Stock updated with " + stock + " amount of coffee capsules");
-        this.controller.gui.FilledField.setText(String.valueOf(model.getStock()));
+        controller.gui.ErrorField.setText("Machines Stock updated with " + stock + " amount of coffee capsules");
+        controller.gui.FilledField.setText(String.valueOf(model.getStock()));
     }
 
     @Override
     public void ResetButton() {
         model.setSold(0);
         model.setStock(0);
-        this.controller.setState(controller.returnEmptyState());
+        controller.setState(controller.returnEmptyState());
     }
 
 
