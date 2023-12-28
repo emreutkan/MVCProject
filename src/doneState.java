@@ -2,21 +2,23 @@ import javax.swing.*;
 
 public class doneState  implements State{
 
+    Model model;
     Controller controller;
 
     public doneState(Controller controller) {
         this.controller = controller;
+        this.model = controller.model;
     }
 
     @Override
     public void startButtonPressed() {
-        if (controller.database.getStock() == 0){
+        if (controller.model.getStock() == 0){
             this.controller.gui.ErrorField.setText("Out of Stock");
             this.controller.setState(controller.returnEmptyState());
         }
         else {
-            this.controller.database.setStock(this.controller.database.getStock()-1);
-            this.controller.database.setSold(this.controller.database.getSold()+1);
+            model.setStock(model.getStock()-1);
+            model.setSold(model.getSold()+1);
             this.controller.setState(controller.returnBrewingState());
 
         }
@@ -24,7 +26,7 @@ public class doneState  implements State{
 
     @Override
     public void fillButton(int stock) {
-        if (controller.database.getStock() == stock){
+        if (model.getStock() == stock){
             // was it an accident?
             JFrame frame = new JFrame();
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -32,21 +34,21 @@ public class doneState  implements State{
             if (response == JOptionPane.YES_OPTION) {
                 System.out.println("accidental fill button click was made");
             } else if (response == JOptionPane.NO_OPTION) {
-                controller.database.setStock(stock+controller.database.getStock());
+                model.setStock(stock+model.getStock());
             }
         }
         else {
-            controller.database.setStock(stock+controller.database.getStock());
+            model.setStock(stock+model.getStock());
         }
-
+        // Example of controller updating the view
         this.controller.gui.ErrorField.setText("Machines Stock updated with " + stock + " amount of coffee capsules");
-        this.controller.gui.FilledField.setText(String.valueOf(controller.database.getStock()));
+        this.controller.gui.FilledField.setText(String.valueOf(model.getStock()));
     }
 
     @Override
     public void ResetButton() {
-        this.controller.database.setSold(0);
-        this.controller.database.setStock(0);
+        model.setSold(0);
+        model.setStock(0);
         this.controller.setState(controller.returnEmptyState());
     }
 

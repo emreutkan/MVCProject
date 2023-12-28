@@ -1,7 +1,7 @@
 
 public class Controller implements Subject {
 
-    DatabaseController database = DatabaseController.getInstance();
+    Model model = Model.getInstance();
     GUI gui;
     State state;
     State doneState;
@@ -11,7 +11,7 @@ public class Controller implements Subject {
 
 
     public Controller(GUI gui) {
-        database.InitializeTable();
+        model.InitializeTable();
 
         this.gui = gui;
         addObserver(this.gui);

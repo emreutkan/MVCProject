@@ -35,18 +35,17 @@ public class brewingState implements State {
 
     @Override
     public void startButtonPressed() {
-        this.controller.gui.ErrorField.setText("Machine is Breawing Please Wait");
+        controller.gui.ErrorField.setText("Machine is Breawing Please Wait");
     }
 
     @Override
     public void fillButton(int stock) {
-        this.controller.gui.ErrorField.setText("Machine is Breawing Please Wait");
+        controller.gui.ErrorField.setText("Machine is Breawing Please Wait");
     }
 
     @Override
     public void ResetButton() {
-        this.controller.gui.ErrorField.setText("Machine is Breawing Please Wait");
-
+        controller.gui.ErrorField.setText("Machine is Breawing Please Wait");
     }
 
 
