@@ -19,7 +19,7 @@ public class brewingState implements State {
                 } else {
                     timer.cancel();
                     controller.gui.ErrorField.setText("Brewing Complete!");
-                    controller.setState(controller.returnDoneState());
+                    model.setState(model.returnDoneState());
                 }
             }
         }, 0, 1000);

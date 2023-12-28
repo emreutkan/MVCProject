@@ -6,7 +6,7 @@ public class idleState implements State {
     public void startButtonPressed() {
         model.setStock(model.getStock() - 1);
         model.setSold(model.getSold() + 1);
-        controller.setState(controller.returnBrewingState());
+        model.setState(model.returnBrewingState());
     }
 
     public void fillButton(int stock) {
@@ -32,7 +32,7 @@ public class idleState implements State {
     public void ResetButton() {
         model.setSold(0);
         model.setStock(0);
-        controller.setState(controller.returnEmptyState());
+        model.setState(model.returnEmptyState());
     }
 
 

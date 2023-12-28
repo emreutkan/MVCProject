@@ -4,14 +4,14 @@ public class doneState  implements State{
 
     @Override
     public void startButtonPressed() {
-        if (controller.model.getStock() == 0){
-            this.controller.gui.ErrorField.setText("Out of Stock");
-            this.controller.setState(controller.returnEmptyState());
+        if (model.getStock() == 0){
+            controller.gui.ErrorField.setText("Out of Stock");
+            model.setState(model.returnEmptyState());
         }
         else {
             model.setStock(model.getStock()-1);
             model.setSold(model.getSold()+1);
-            this.controller.setState(controller.returnBrewingState());
+            model.setState(model.returnBrewingState());
 
         }
     }
@@ -41,7 +41,7 @@ public class doneState  implements State{
     public void ResetButton() {
         model.setSold(0);
         model.setStock(0);
-        controller.setState(controller.returnEmptyState());
+        model.setState(model.returnEmptyState());
     }
 
 

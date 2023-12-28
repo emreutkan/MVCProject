@@ -1,11 +1,26 @@
 import java.sql.*;
 
-public class Model {
+public class Model implements Subject{
     private static final String URL = "jdbc:mysql://localhost:3306/project3313";
     private static final String USER = "root";
     private static final String PASSWORD = "root";
 
+    GUI gui = GUI.getInstance();
+    State state;
+    State doneState;
+    State emptyState;
+    State idleState;
+    State brewingState;
+
     private Model() {
+        InitializeTable();
+        addObserver(gui);
+        doneState = new doneState();
+        emptyState = new emptyState();
+        idleState = new idleState();
+        brewingState = new brewingState();
+        this.state = emptyState;
+        notifyObservers();
     }
 
     private static Model ModelSingleton = null;
@@ -136,4 +151,31 @@ public class Model {
         return sold;
     }
 
+    void setState(State state) {
+        this.state = state;
+        notifyObservers();
+    }
+
+    State returnDoneState() {
+        return doneState;
+    }
+
+    State returnEmptyState() {
+        return emptyState;
+    }
+
+    State returnIdleState() {
+        return idleState;
+    }
+
+    State returnBrewingState() {
+        return brewingState;
+    }
+
+    @Override
+    public void notifyObservers() {
+        for (Observer observer : observers) {
+            observer.update(this.state);
+        }
+    }
 }

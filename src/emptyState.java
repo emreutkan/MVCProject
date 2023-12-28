@@ -5,10 +5,10 @@ public class emptyState implements State {
     @Override
     public void startButtonPressed() {
         if (model.getStock() == 0) {
-            this.controller.gui.ErrorField.setText("Out of Stock");
+            controller.gui.ErrorField.setText("Out of Stock");
         } else {
             controller.gui.ErrorField.setText("Machine switched to Idle State");
-            controller.setState(controller.returnIdleState());
+            model.setState(model.returnIdleState());
         }
     }
 
@@ -35,7 +35,7 @@ public class emptyState implements State {
     public void ResetButton() {
         model.setSold(0);
         model.setStock(0);
-        controller.setState(controller.returnEmptyState());
+        model.setState(model.returnEmptyState());
     }
 
 

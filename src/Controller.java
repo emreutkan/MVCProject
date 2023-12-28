@@ -1,13 +1,9 @@
 
-public class Controller implements Subject {
+public class Controller  {
 
     Model model = Model.getInstance();
+
     GUI gui = GUI.getInstance();
-    State state;
-    State doneState;
-    State emptyState;
-    State idleState;
-    State brewingState;
 
 
     private static Controller ControllerSingleton = null;
@@ -20,16 +16,6 @@ public class Controller implements Subject {
     }
 
     private Controller() {
-        model.InitializeTable();
-        addObserver(gui);
-
-        doneState = new doneState();
-        emptyState = new emptyState();
-        idleState = new idleState();
-        brewingState = new brewingState();
-        this.state = emptyState;
-        notifyObservers();
-
         initializeActionListeners();
     }
 
@@ -39,7 +25,7 @@ public class Controller implements Subject {
         gui.ResetButton.addActionListener(e -> ResetButtonPressed());
     }
     public void StartButtonPressed() {
-        this.state.startButtonPressed();
+        model.state.startButtonPressed();
     }
 
     public void filledButtonPressed() {
@@ -51,7 +37,7 @@ public class Controller implements Subject {
             } else if (givenStock < 0) {
                 gui.ErrorField.setText("You cant give negative number as an input for Filled field");
             } else {
-                this.state.fillButton(givenStock);
+                model.state.fillButton(givenStock);
             }
         } catch (NumberFormatException e) {
             gui.ErrorField.setText("input for Filled field must be a positive number");
@@ -60,34 +46,9 @@ public class Controller implements Subject {
     }
 
     public void ResetButtonPressed(){
-        this.state.ResetButton();
+        model.state.ResetButton();
     }
 
-    void setState(State state) {
-        this.state = state;
-        notifyObservers();
-    }
 
-    State returnDoneState() {
-        return doneState;
-    }
 
-    State returnEmptyState() {
-        return emptyState;
-    }
-
-    State returnIdleState() {
-        return idleState;
-    }
-
-    State returnBrewingState() {
-        return brewingState;
-    }
-
-    @Override
-    public void notifyObservers() {
-        for (Observer observer : observers) {
-            observer.update(this.state);
-        }
-    }
 }
