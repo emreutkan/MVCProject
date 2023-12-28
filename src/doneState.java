@@ -5,7 +5,7 @@ public class doneState  implements State{
     @Override
     public void startButtonPressed() {
         if (model.getStock() == 0){
-            controller.gui.ErrorField.setText("Out of Stock");
+            controller.view.ErrorField.setText("Out of Stock");
             model.setState(model.returnEmptyState());
         }
         else {
@@ -33,8 +33,8 @@ public class doneState  implements State{
             model.setStock(stock+model.getStock());
         }
         // Example of controller updating the view
-        controller.gui.ErrorField.setText("Machines Stock updated with " + stock + " amount of coffee capsules");
-        controller.gui.FilledField.setText(String.valueOf(model.getStock()));
+        controller.view.ErrorField.setText("Machines Stock updated with " + stock + " amount of coffee capsules");
+        controller.view.FilledField.setText(String.valueOf(model.getStock()));
     }
 
     @Override

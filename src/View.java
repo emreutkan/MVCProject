@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class GUI extends javax.swing.JFrame implements Observer {
+public class View extends javax.swing.JFrame implements Observer {
 
     public javax.swing.JTextField BREWINGfield;
     public javax.swing.JTextField DONEfield;
@@ -19,17 +19,16 @@ public class GUI extends javax.swing.JFrame implements Observer {
     public javax.swing.JPanel middleRow;
     public javax.swing.JTextField totalNumberOfCups;
 
-    private static GUI GUISingleton = null;
+    private static View ViewSingleton = null;
 
-    public static synchronized GUI getInstance() {
-        if (GUISingleton == null){
-            GUISingleton = new GUI();
+    public static synchronized View getInstance() {
+        if (ViewSingleton == null){
+            ViewSingleton = new View();
         }
-        return GUISingleton;
+        return ViewSingleton;
     }
 
-
-    private GUI() {
+    private View() {
         this.setVisible(true);
         this.setTitle("Coffee Maker");
         mainFrame = new javax.swing.JPanel();
@@ -121,18 +120,16 @@ public class GUI extends javax.swing.JFrame implements Observer {
 
         pack();
     }
-
     @Override
-    public void update(State state) {
-        DatabaseController database = DatabaseController.getInstance();
+    public void update(State state,Model model) {
         if (state instanceof idleState) {
             IDLEfield.setBackground(Color.yellow);
         } else if (state instanceof brewingState) {
             IDLEfield.setBackground(Color.white);
             DONEfield.setBackground(Color.white);
             BREWINGfield.setBackground(Color.RED);
-            FilledField.setText(String.valueOf(database.getStock()));
-            totalNumberOfCups.setText(String.valueOf(database.getSold()));
+            FilledField.setText(String.valueOf(model.getStock()));
+            totalNumberOfCups.setText(String.valueOf(model.getSold()));
             ((brewingState) state).brew();
         } else if (state instanceof doneState) {
             IDLEfield.setBackground(Color.white);
@@ -141,8 +138,8 @@ public class GUI extends javax.swing.JFrame implements Observer {
         } else if (state instanceof emptyState) {
             DONEfield.setBackground(Color.white);
             IDLEfield.setBackground(Color.white);
-            FilledField.setText(String.valueOf(database.getStock()));
-            totalNumberOfCups.setText(String.valueOf(database.getSold()));
+            FilledField.setText(String.valueOf(model.getStock()));
+            totalNumberOfCups.setText(String.valueOf(model.getSold()));
         }
     }
 }

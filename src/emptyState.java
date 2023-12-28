@@ -2,12 +2,14 @@ import javax.swing.*;
 
 public class emptyState implements State {
 
+
+
     @Override
     public void startButtonPressed() {
         if (model.getStock() == 0) {
-            controller.gui.ErrorField.setText("Out of Stock");
+            controller.view.ErrorField.setText("Out of Stock");
         } else {
-            controller.gui.ErrorField.setText("Machine switched to Idle State");
+            controller.view.ErrorField.setText("Machine switched to Idle State");
             model.setState(model.returnIdleState());
         }
     }
@@ -27,8 +29,8 @@ public class emptyState implements State {
             model.setStock(stock + model.getStock());
         }
 
-        controller.gui.ErrorField.setText("Machines Stock updated with " + stock + " amount of coffee capsules");
-        controller.gui.FilledField.setText(String.valueOf(model.getStock()));
+        controller.view.ErrorField.setText("Machines Stock updated with " + stock + " amount of coffee capsules");
+        controller.view.FilledField.setText(String.valueOf(model.getStock()));
     }
 
     @Override

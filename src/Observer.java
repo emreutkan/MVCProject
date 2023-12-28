@@ -1,3 +1,3 @@
 public interface Observer {
-    void update(State state);
+    void update(State state,Model model);
 }

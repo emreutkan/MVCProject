@@ -1,7 +1,7 @@
 public interface State {
     
     Controller controller = Controller.getInstance();
-    Model model = Model.getInstance();
+    Model model = controller.getModelInstance();
 
     void startButtonPressed();
 

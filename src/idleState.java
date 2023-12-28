@@ -24,8 +24,8 @@ public class idleState implements State {
             model.setStock(stock + model.getStock());
         }
 
-        controller.gui.ErrorField.setText("Machines Stock updated with " + stock + " amount of coffee capsules");
-        controller.gui.FilledField.setText(String.valueOf(model.getStock()));
+        controller.view.ErrorField.setText("Machines Stock updated with " + stock + " amount of coffee capsules");
+        controller.view.FilledField.setText(String.valueOf(model.getStock()));
     }
 
     @Override
